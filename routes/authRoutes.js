@@ -1,10 +1,11 @@
-// authRoutes : déclare la route POST /register reliée à la fonction register du controller
+// authRoutes : déclare les routes POST /register et POST /login reliées aux fonctions du controller
 
 import express from 'express';
-import { register } from '../controllers/authController.js';
+import { register, login } from '../controllers/authController.js';
 
 const router = express.Router();
 
 router.post('/register', register);
+router.post('/login', login);
 
 export default router;
