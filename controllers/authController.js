@@ -1,5 +1,6 @@
 // register : vérifie email/password, vérifie que l'email n'existe pas déjà, hash le mot de passe avec bcrypt, crée l'utilisateur en base
 // login : vérifie que l'utilisateur existe, compare le mot de passe avec bcrypt, génère et renvoie un token JWT valable 1h
+// getUsers : renvoie la liste de tous les utilisateurs enregistrés, sans jamais inclure le champ password
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -53,6 +54,15 @@ export const login = async (req, res) => {
     });
 
     return res.status(200).json({ message: 'Connexion réussie', token });
+  } catch (error) {
+    return res.status(500).json({ message: 'Erreur serveur', error: error.message });
+  }
+};
+
+export const getUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password');
+    return res.status(200).json(users);
   } catch (error) {
     return res.status(500).json({ message: 'Erreur serveur', error: error.message });
   }
