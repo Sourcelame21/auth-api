@@ -5,6 +5,11 @@ BACKEND
 1. Installer les dependances :
 npm install
 
+Si un message "allow-scripts" apparait (bcrypt, mongodb-memory-server), taper :
+npm approve-scripts bcrypt
+npm approve-scripts mongodb-memory-server
+npm install
+
 2. Creer un fichier .env a la racine (copier .env.example) avec :
 MONGO_URI=votre_connection_string_atlas
 JWT_SECRET=une_chaine_secrete_aleatoire
