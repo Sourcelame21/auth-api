@@ -1,6 +1,10 @@
 // connectDB : établit la connexion à MongoDB via Mongoose en utilisant MONGO_URI, et stoppe le process si la connexion échoue
+// setServers : force Node à interroger un DNS public plutôt que celui du routeur local, pour contourner les échecs de résolution SRV
 
 import mongoose from 'mongoose';
+import dns from 'dns';
+
+dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 const connectDB = async () => {
   try {

@@ -1,16 +1,11 @@
-// server.js : charge les variables d'environnement, connecte MongoDB, configure Express, monte les routes d'authentification et démarre le serveur
+// server.js : point d'entrée de production — charge les variables d'environnement, connecte MongoDB, puis démarre l'app Express sur PORT
 
-import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import authRoutes from './routes/authRoutes.js';
+import app from './app.js';
 
 dotenv.config();
 connectDB();
-
-const app = express();
-app.use(express.json());
-app.use('/', authRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
